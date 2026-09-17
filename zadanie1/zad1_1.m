@@ -1,5 +1,8 @@
 clc;clear;close all;
 
+global evals
+evals = 0; %to pre eggholder, idk
+
 % Uvodne nastavenia
 nvars = 10;                                    % pocet premennych
 Space = [-500*ones(1,nvars);
@@ -81,6 +84,7 @@ for v = 1:5
         for g = 1:ngen
 
             f = testfn3(pop);                   % vyhodnotenie populacie
+            %f = eggholder(pop); %EGGHOLDER
             bestHistAll(r,g) = min(f);          % najlepsia hodnota v generacii
             Best = selbest(pop,f,bestNums);     % najlepsi jedinci
             Old = selrand(pop,f,oldCount);      % nahodne zachovani jedinci
