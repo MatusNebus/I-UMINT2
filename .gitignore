@@ -1,0 +1,21 @@
+# MATLAB temporary files
+*.asv
+*.autosave
+*.m~
+
+# MATLAB generated folders
+slprj/
+codegen/
+
+# MATLAB compiled/generated files
+*.mex*
+*.p
+*.slxc
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE/editor
+.vscode/
+.idea/
