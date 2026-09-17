@@ -22,12 +22,12 @@ for v = 1:5
     switch variant
         case 'a' % velky selektivny tlak + velka diverzita
             bestNums = [6,4];                    % viac kopii najlepsich -> vyssi selektivny tlak
-            oldCount = 1;                        % ziadny nahodny vyber -> vyssi selektivny tlak
+            oldCount = 1;                        % takmer ziadny nahodny vyber -> vyssi selektivny tlak
             work1Count = 17;
             work2Count = 22;
-            selectionName = "selsus";            % vyssi selektivny tlak
-            pmut_global = 0.30;                  % silna globalna mutacia -> vyssia diverzita
-            pmut_local = 0.30;                   % viac lokalnych mutacii -> vyssia diverzita
+            selectionName = "selbest";            % vyssi selektivny tlak
+            pmut_global = 0.50;                  % silna globalna mutacia -> vyssia diverzita
+            pmut_local = 0.50;                   % viac lokalnych mutacii -> vyssia diverzita
             Amp_local = 100 * ones(1,nvars);     % vacsie zmeny pri muta -> vyssia diverzita
     
         case 'b' % velky selektivny tlak + mala diverzita
@@ -35,7 +35,7 @@ for v = 1:5
             oldCount = 1;
             work1Count = 17;
             work2Count = 22;
-            selectionName = "selsus";
+            selectionName = "selbest";
             pmut_global = 0.005;                 % skoro ziadna globalna mutacia -> mala diverzita
             pmut_local = 0.005;                  % skoro ziadna lokalna mutacia -> mala diverzita
             Amp_local = 1 * ones(1,nvars);       % velmi male lokalne zmeny -> mala diverzita
@@ -46,8 +46,8 @@ for v = 1:5
             work1Count = 14;
             work2Count = 14;
             selectionName = "seltourn";          % nizsi selektivny tlak ako selsus
-            pmut_global = 0.30;                  % silna globalna mutacia -> vyssia diverzita
-            pmut_local = 0.30;                   % silna lokalna mutacia -> vyssia diverzita
+            pmut_global = 0.50;                  % silna globalna mutacia -> vyssia diverzita
+            pmut_local = 0.50;                   % silna lokalna mutacia -> vyssia diverzita
             Amp_local = 100 * ones(1,nvars);     % vacsie lokalne zmeny -> vyssia diverzita
     
         case 'd' % maly selektivny tlak + mala diverzita
@@ -95,6 +95,10 @@ for v = 1:5
                 case "seltourn"
                     Work1 = seltourn(pop,f,work1Count);
                     Work2 = seltourn(pop,f,work2Count);
+
+                case "selbest"
+                    Work1 = selbest(pop,f,ones(1,work1Count));
+                    Work2 = selbest(pop,f,ones(1,work2Count));
             end
 
             Work1 = crossov(Work1,1,0);                         % krizenie
@@ -118,7 +122,7 @@ for v = 1:5
     plot(1:ngen,bestHistAll(1,:),'LineWidth',1);
     plot(1:ngen,bestHistAll(2,:),'LineWidth',1);
     plot(1:ngen,bestHistAll(3,:),'LineWidth',1);
-    plot(1:ngen,averageHist,'k','LineWidth',2.5);
+    plot(1:ngen,averageHist,'k','LineWidth',1.5);
     xlabel('Generacia');
     ylabel('Najlepsia hodnota');
     title(['Pripad ',upper(variant)]);
