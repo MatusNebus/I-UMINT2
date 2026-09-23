@@ -59,7 +59,7 @@ for v = 1:5
         for g = 1:ngen
 
             f = testfn3(pop);                   % vyhodnotenie populacie
-            %f = eggholder(pop); %EGGHOLDER
+            f = eggholder(pop); %EGGHOLDER
             bestHistAll(r,g) = min(f);          % najlepsia hodnota v generacii
 
             Best = selbest(pop,f,bestNums);     % 2 najlepsi jedinci
@@ -102,7 +102,7 @@ for v = 1:5
     plot(1:ngen,bestHistAll(1,:),'LineWidth',1);
     plot(1:ngen,bestHistAll(2,:),'LineWidth',1);
     plot(1:ngen,bestHistAll(3,:),'LineWidth',1);
-    plot(1:ngen,averageHist,'k','LineWidth',2.5);
+    plot(1:ngen,averageHist,'k','LineWidth',1.8);
     xlabel('Generacia');
     ylabel('Najlepsia hodnota');
     title(titles(v));
