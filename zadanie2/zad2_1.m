@@ -3,34 +3,31 @@ global evals
 evals = 0;
 
 % Uvodne nastavenia
-nvars = 10;                                    % pocet premennych
+nvars = 10;                                    % pocet premennych eggholder funkcie
 Space = [-500*ones(1,nvars);
           500*ones(1,nvars)];                  % definicny obor
 runs = 5;                                      % pocet behov
-ngen = 1000;                                   % pocet generacii
-
-islandSize = 70;                               % 3 ostrovy po 33 = 99
-sgaSize = 210;                                  % rovnaky pocet jedincov ako cele PGA
+ngen = 3000;                                   % pocet generacii
+islandSize = 100;                              % 3 ostrovy po 100 = 300
+sgaSize = 300;                                 % rovnaky pocet jedincov ako cele PGA
 stagnationLimit = 50;                          % po 50 generaciach bez zlepsenia zasah
-
 pmut_global = 0.3;
 pmut_local = 0.3;
 Amp_local = 5 * ones(1,nvars);
+resetCount = 50;                               % reset polovice ostrova A
+warmupAmp = 0.30 * (Space(2,:) - Space(1,:));  % warm-up +-30 % rozsahu
 
-resetCount = 16;                               % reset približne polovice ostrova A
-warmupAmp = 0.30 * (Space(2,:) - Space(1,:));  % warm-up +-10 % rozsahu
+% Rozdelenie populacie na jednom ostrove:
+bestNumsPGA = [1,1];
+RandOldCountPGA = 21;
+work1CountPGA = 36; %tito idu na krizenie
+work2CountPGA = 41; %tito idu na mutaciu
 
-% Rozdelenie populacie na ostrove - spolu 33
-bestNumsPGA = 1;
-RandOldCountPGA = 7;
-work1CountPGA = 12;
-work2CountPGA = 13;
-
-% Rozdelenie populacie SGA - spolu 99
-bestNumsSGA = [1,1,1,1];
-RandOldCountSGA = 20;
-work1CountSGA = 36;
-work2CountSGA = 39;
+% Rozdelenie populacie SGA:
+bestNumsSGA = ones(1,8);
+RandOldCountSGA = 60;
+work1CountSGA = 108;
+work2CountSGA = 124;
 
 histA = zeros(runs,ngen);
 histB = zeros(runs,ngen);
