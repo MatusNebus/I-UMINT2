@@ -77,9 +77,7 @@ for r = 1:runs
 
             % Binomicke krizenie:
             mask = rand(1,nvars) < CR;
-
-            % Aspoñ jeden gen musi pochadzat z mutanta podla zadania
-            jrand = randi(nvars);
+            jrand = randi(nvars);         % Aspon jeden gen musi pochadzat z mutanta podla zadania
             mask(jrand) = true;
 
             trialPop(i,mask) = v(mask);
